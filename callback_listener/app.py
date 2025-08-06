@@ -46,8 +46,13 @@ def pesapal_callback():
 
 if __name__ == '__main__':
     
+
     # SSL Certificate paths
     ssl_context = ('certs/fullchain.pem', 'certs/privkey.pem')
 
-    # Please run on port 443 (HTTPS)
+    # Please run on port 443 (HTTPS) - whenever you are testing locally - 
+    # ssh has to be set up to forward port 443 to your local machine
+    # Uncomment the line below to run the app with SSL context:
     app.run(host='0.0.0.0', port=443, ssl_context=ssl_context)
+    
+    #app.run(host='0.0.0.0', port=10000)

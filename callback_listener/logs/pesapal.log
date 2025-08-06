@@ -6,3 +6,44 @@
 2025-08-06 14:36:53,697 INFO Transaction received from 127.0.0.1: {'id': 10463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
 2025-08-06 14:36:53,770 INFO Transaction saved successfully.
 2025-08-06 14:36:53,770 INFO 127.0.0.1 - - [06/Aug/2025 14:36:53] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-06 15:23:18,426 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://10.30.84.126:10000
+2025-08-06 15:23:18,428 INFO [33mPress CTRL+C to quit[0m
+2025-08-06 15:32:29,032 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://10.30.84.126:10000
+2025-08-06 15:32:29,032 INFO [33mPress CTRL+C to quit[0m
+2025-08-06 15:34:18,673 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:443
+ * Running on https://10.30.84.126:443
+2025-08-06 15:34:18,673 INFO [33mPress CTRL+C to quit[0m
+2025-08-06 15:34:27,694 INFO Transaction received from 127.0.0.1: {'id': 10463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
+2025-08-06 15:34:27,865 ERROR Error saving transaction to DB
+Traceback (most recent call last):
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 40, in pesapal_callback
+    save_transaction_to_db(data)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 60, in save_transaction_to_db
+    cursor.execute('''
+    ~~~~~~~~~~~~~~^^^^
+        INSERT INTO pesapal_transactions (
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+        datetime.utcnow()
+        ^^^^^^^^^^^^^^^^^
+    ))
+    ^^
+pyodbc.IntegrityError: ('23000', "[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__pesapal___3213E83F251F085A'. Cannot insert duplicate key in object 'dbo.pesapal_transactions'. The duplicate key value is (10463). (2627) (SQLExecDirectW); [23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated. (3621)")
+2025-08-06 15:34:27,868 INFO 127.0.0.1 - - [06/Aug/2025 15:34:27] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
+2025-08-06 15:37:54,648 INFO Transaction received from 127.0.0.1: {'id': 19463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
+2025-08-06 15:37:54,737 INFO Transaction saved successfully.
+2025-08-06 15:37:54,738 INFO 127.0.0.1 - - [06/Aug/2025 15:37:54] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-06 16:47:05,513 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:443
+ * Running on https://10.30.84.126:443
+2025-08-06 16:47:05,514 INFO [33mPress CTRL+C to quit[0m
