@@ -337,6 +337,6 @@ The application logs to `logs/pesapal.log` with:
 ## 📞 Support
 
 For issues with:
-- **Pesapal Integration**: Contact Pesapal Support
+- **Pesapal Integration**: write to me -> **akokomichael37@gmail.com**
 - **SQL Server**: Check Microsoft documentation
 - **Flask Application**: Review logs in `logs/pesapal.log`
