@@ -1,0 +1,8 @@
+2025-08-06 14:36:41,397 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:443
+ * Running on https://10.30.84.126:443
+2025-08-06 14:36:41,397 INFO [33mPress CTRL+C to quit[0m
+2025-08-06 14:36:53,697 INFO Transaction received from 127.0.0.1: {'id': 10463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
+2025-08-06 14:36:53,770 INFO Transaction saved successfully.
+2025-08-06 14:36:53,770 INFO 127.0.0.1 - - [06/Aug/2025 14:36:53] "POST /pesapal-callback HTTP/1.1" 200 -
