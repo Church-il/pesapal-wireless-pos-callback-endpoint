@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: pesapal-callback-listener
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python callback_listener/app.py"
+    envVars:
+      - key: DB_SERVER
+        value: 0.tcp.in.ngrok.io,15111     
+      - key: DB_NAME
+        value: PesapalDB
+      - key: DB_USERNAME
+        value: sa
+      - key: DB_PASSWORD
+        value: michaelakoko2025
