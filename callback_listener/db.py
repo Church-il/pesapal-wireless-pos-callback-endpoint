@@ -80,4 +80,4 @@ def save_transaction_to_db(data):
 
     conn.commit()
     cursor.close()
-    conn.close()
+    conn.close()    
