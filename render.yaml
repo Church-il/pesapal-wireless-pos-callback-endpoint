@@ -3,10 +3,10 @@ services:
     name: pesapal-callback-listener
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python callback_listener/app.py"
+    startCommand: "gunicorn callback_listener.app:app"
     envVars:
       - key: DB_SERVER
-        value: 0.tcp.in.ngrok.io,15111     
+        value: 7.tcp.eu.ngrok.io,15590
       - key: DB_NAME
         value: PesapalDB
       - key: DB_USERNAME
