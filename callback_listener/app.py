@@ -4,6 +4,9 @@ import os
 import sys
 from callback_listener.db import save_transaction_to_db
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__)
 
 # ===============================

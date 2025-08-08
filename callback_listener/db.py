@@ -1,12 +1,16 @@
+import os
 import pyodbc
 from datetime import datetime
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Database Creds
 DB_CONFIG = {
-    "server": "7.tcp.eu.ngrok.io,15590",
-    "database": "PesapalDB",
-    "username": "sa",
-    "password": "michaelakoko2025",
+    "server": os.getenv("DB_SERVER"),
+    "database": os.getenv("DB_NAME"),
+    "username": os.getenv("DB_USERNAME"),
+    "password": os.getenv("DB_PASSWORD"),
     "driver": "ODBC Driver 17 for SQL Server"
 }
 
