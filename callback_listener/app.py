@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import logging
 import os
 import sys
-from db import save_transaction_to_db
+from callback_listener.db import save_transaction_to_db
 
 app = Flask(__name__)
 
