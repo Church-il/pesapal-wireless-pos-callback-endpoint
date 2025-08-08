@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Database Creds
 DB_CONFIG = {
-    "server": "localhost\\SQLEXPRESS",
+    "server": "7.tcp.eu.ngrok.io,15590",
     "database": "PesapalDB",
     "username": "sa",
     "password": "michaelakoko2025",
