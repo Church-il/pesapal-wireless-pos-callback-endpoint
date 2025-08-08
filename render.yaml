@@ -1,9 +1,9 @@
 services:
   - type: web
     name: pesapal-callback-listener
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn callback_listener.app:app"
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: DB_SERVER
         value: 7.tcp.eu.ngrok.io,15590
@@ -13,3 +13,5 @@ services:
         value: sa
       - key: DB_PASSWORD
         value: michaelakoko2025
+      - key: PORT
+        value: 10000
