@@ -23,7 +23,7 @@ RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
-WORKDIR /app
+WORKDIR /app/callback_listener
 
 # Copy requirements first for better build caching
 COPY requirements.txt ./
@@ -45,4 +45,4 @@ EXPOSE 10000
 
 # Use environment variables at runtime instead of embedding secrets
 # Start app with Gunicorn
-CMD ["gunicorn", "callback_listener:app", "--bind", "0.0.0.0:10000", "--workers=2", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=2", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
