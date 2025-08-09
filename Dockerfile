@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Add Microsoft repository & install ODBC Driver 17 using modern keyring approach
+# Add Microsoft repository & install ODBC Driver 17
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg \
     && echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update \
@@ -26,22 +26,23 @@ RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor
 # Set working directory
 WORKDIR /app
 
-# Copy requirements first for better layer caching
+# Copy requirements and install Python dependencies
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app source
+# Copy all application files
 COPY . .
 
-# Create non-root user for security
-RUN useradd --create-home --shell /bin/bash app \
-    && chown -R app:app /app
-USER app
+# Create logs directory
+RUN mkdir -p /app/logs
 
-# Expose Render port
+# Create non-root user for security
+RUN useradd --create-home --shell /bin/bash appuser \
+    && chown -R appuser:appuser /app
+USER appuser
+
+# Expose port
 EXPOSE 10000
 
-# Start app with:
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=4", "--threads=2"]
+# Start app with Gunicorn
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=4", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
