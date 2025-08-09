@@ -18,8 +18,7 @@ RUN apt-get update && apt-get install -y \
 
 # Add Microsoft repository & install ODBC Driver 17 using modern keyring approach
 RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg \
-    && curl -fsSL https://packages.microsoft.com/config/debian/12/prod.list | tee /etc/apt/sources.list.d/mssql-release.list \
-    && sed -i 's|deb |deb [signed-by=/usr/share/keyrings/microsoft-prod.gpg] |' /etc/apt/sources.list.d/mssql-release.list \
+    && echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update \
     && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
     && rm -rf /var/lib/apt/lists/*
@@ -44,5 +43,5 @@ USER app
 # Expose Render port
 EXPOSE 10000
 
-# Start app with Gunicorn (Render will override $PORT)
+# Start app with:
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=4", "--threads=2"]
