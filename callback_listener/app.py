@@ -15,7 +15,7 @@ app = Flask(__name__)
 log_dir = 'logs'
 log_file = os.path.join(log_dir, 'pesapal.log')
 
-# Ensure the logs directory exists
+
 os.makedirs(log_dir, exist_ok=True)
 
 # Set up a root logger
