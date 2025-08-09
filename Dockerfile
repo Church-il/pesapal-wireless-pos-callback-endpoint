@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # Avoid interactive prompts during installs
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install system dependencies & SQL Server ODBC driver
+# Install only what's needed for msodbcsql17 + pyodbc
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     unixodbc \
     unixodbc-dev \
     libgssapi-krb5-2 \
-    build-essential \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -26,23 +25,24 @@ RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
+# Copy requirements first for better build caching
+COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all application files
+# Copy application code (excluding .env via .dockerignore)
 COPY . .
 
 # Create logs directory
-RUN mkdir -p /app/logs
+RUN mkdir -p /app/logs && \
+    adduser --disabled-password --gecos '' appuser && \
+    chown -R appuser:appuser /app
 
-# Create non-root user for security
-RUN useradd --create-home --shell /bin/bash appuser \
-    && chown -R appuser:appuser /app
+# Switch to non-root user
 USER appuser
 
 # Expose port
 EXPOSE 10000
 
+# Use environment variables at runtime instead of embedding secrets
 # Start app with Gunicorn
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=4", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=2", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
