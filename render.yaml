@@ -14,4 +14,4 @@ services:
       - key: DB_PASSWORD
         value: michaelakoko2025
       - key: PORT
-        value: 10000
+        value: ${PORT}
