@@ -13,12 +13,13 @@ RUN apt-get update && apt-get install -y \
     unixodbc-dev \
     libgssapi-krb5-2 \
     build-essential \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Add Microsoft repository & install ODBC Driver 17
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/12/prod.list \
-    > /etc/apt/sources.list.d/mssql-release.list \
+# Add Microsoft repository & install ODBC Driver 17 using modern keyring approach
+RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg \
+    && curl -fsSL https://packages.microsoft.com/config/debian/12/prod.list | tee /etc/apt/sources.list.d/mssql-release.list \
+    && sed -i 's|deb |deb [signed-by=/usr/share/keyrings/microsoft-prod.gpg] |' /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update \
     && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
     && rm -rf /var/lib/apt/lists/*
@@ -26,22 +27,19 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 # Set working directory
 WORKDIR /app
 
+# Copy requirements first for better layer caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
 # Copy app source
 COPY . .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir \
-    Flask==2.3.3 \
-    gunicorn \
-    pyodbc==5.2.0 \
-    python-dotenv==1.1.1 \
-    blinker==1.9.0 \
-    click==8.2.1 \
-    colorama==0.4.6 \
-    itsdangerous==2.2.0 \
-    Jinja2==3.1.6 \
-    MarkupSafe==3.0.2 \
-    Werkzeug==3.1.3
+# Create non-root user for security
+RUN useradd --create-home --shell /bin/bash app \
+    && chown -R app:app /app
+USER app
 
 # Expose Render port
 EXPOSE 10000
