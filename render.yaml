@@ -3,7 +3,7 @@ services:
     name: pesapal-callback-listener
     env: docker
     plan: free
-    dockerfilePath: ./gfygvuvui
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: DB_SERVER
         value: 7.tcp.eu.ngrok.io,15590
