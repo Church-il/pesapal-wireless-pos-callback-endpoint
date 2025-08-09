@@ -1,45 +1,43 @@
 # Use Python slim image
 FROM python:3.11-slim
 
-# Environment variables to suppress warnings
+# Environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV ACCEPT_EULA=Y
 
-# Install system dependencies
+# Install system dependencies & ODBC driver
 RUN apt-get update && apt-get install -y \
     curl \
-    gnupg \
+    gnupg2 \
     apt-transport-https \
     unixodbc \
     unixodbc-dev \
     gcc \
     g++ \
     libssl-dev \
-    libffi-dev
+    libffi-dev \
+    # Add Microsoft repo & install ODBC driver
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
+    # Clean up
+    && rm -rf /var/lib/apt/lists/*
 
-# Add Microsoft package signing key and repository for Debian 11
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
-    apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y msodbcsql17 && \
-    rm -rf /var/lib/apt/lists/*
+# Verify driver installation
+RUN odbcinst -q -d -n "ODBC Driver 17 for SQL Server" || (echo "Driver not found" && exit 1)
 
 # Set working directory
 WORKDIR /app
 
-# Copy requirements first for caching
-COPY requirements.txt .
-
-# Install Python dependencies + Gunicorn
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir gunicorn
-
-# Copy the rest of the application
+# Copy project files
 COPY . .
 
-# Expose the application port
+# Install Python dependencies
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Expose app port
 EXPOSE 10000
 
-# Run the app with Gunicorn (4 workers, threaded, bound to $PORT for Render)
-CMD ["gunicorn", "--workers", "4", "--threads", "2", "--bind", "0.0.0.0:10000", "app:app"]
+# Run the app
+CMD ["python", "app.py"]
