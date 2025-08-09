@@ -45,4 +45,4 @@ EXPOSE 10000
 
 # Use environment variables at runtime instead of embedding secrets
 # Start app with Gunicorn
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--workers=2", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
+CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:10000", "--workers=2", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
