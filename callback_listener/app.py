@@ -239,4 +239,3 @@ if __name__ == "__main__":
         print(f"⚠️ Running without SSL on port {port}")
         app.run(host="0.0.0.0", port=port)
         
-print(f"DB_TYPE on startup: {os.getenv('DB_TYPE')}")
