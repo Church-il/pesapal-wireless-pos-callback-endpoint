@@ -82,7 +82,7 @@ def home():
         return jsonify({
             "service": "Pesapal Wireless POS Callback Endpoint",
             "status": "running",
-            "timestamp": datetime.datetime.now().isoformat(),
+            "timestamp": datetime.now().isoformat(),
             "version": "1.0.0"
         })
     
