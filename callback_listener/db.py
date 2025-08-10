@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 EAT = timezone(timedelta(hours=3))
 
 def get_db_type():
-    db_type = os.getenv("DB_TYPE", "sqlserver")
+    db_type = os.getenv("DB_TYPE", "postgres")
     if db_type:
         return db_type.lower()
     return "sqlserver"

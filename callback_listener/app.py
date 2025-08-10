@@ -4,10 +4,9 @@ import logging
 from datetime import datetime, timedelta, timezone
 import os
 import sys
+from db import save_transaction_to_db
 
 load_dotenv()
-
-from db import save_transaction_to_db
 
 
 DB_TYPE = os.getenv("DB_TYPE")
