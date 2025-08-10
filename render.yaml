@@ -5,6 +5,11 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     envVars:
+      # DB type: choose "sqlserver" or "postgres"
+      - key: DB_TYPE
+        value: postgres
+
+      # --- SQL Server Config ---
       - key: DB_SERVER
         value: 5.tcp.eu.ngrok.io,10457
       - key: DB_NAME
@@ -14,3 +19,18 @@ services:
       - key: DB_PASSWORD
         value: michaelakoko2025
 
+      # --- Postgres Config ---
+      - key: POSTGRES_HOST
+        value: dpg-d2cd8mc9c44c73fc9dv0-a.oregon-postgres.render.com
+      - key: POSTGRES_DB
+        value: pesapaldb
+      - key: POSTGRES_USER
+        value: michaelakoko
+      - key: POSTGRES_PASSWORD
+        value: C98d7JMTvH1N1ekR4pp961v2JinYtN0L
+      - key: POSTGRES_PORT
+        value: "5432"
+
+      # App Port
+      - key: PORT
+        value: "15000"

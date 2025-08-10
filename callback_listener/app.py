@@ -223,15 +223,15 @@ def pesapal_callback():
 # ===============================
 # Run App
 # ===============================
-if __name__ == '__main__':
-    # For local HTTPS testing with certs
-    ssl_context = ('certs/fullchain.pem', 'certs/privkey.pem')
-    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)), ssl_context=ssl_context)
 
-    # Enable debug mode for local testing
-    #app.debug = True  
-    
-    
-    # For HTTP testing or cloud deployment (e.g. Render)
-    # Use PORT environment variable for flexibility
-    #app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8999))
+    ssl_cert = os.getenv("SSL_CERT_PATH")
+    ssl_key = os.getenv("SSL_KEY_PATH")
+
+    if ssl_cert and ssl_key and os.path.exists(ssl_cert) and os.path.exists(ssl_key):
+        print(f"🔐 Running with HTTPS on port {port}")
+        app.run(host="0.0.0.0", port=port, ssl_context=(ssl_cert, ssl_key))
+    else:
+        print(f"⚠️ Running without SSL on port {port}")
+        app.run(host="0.0.0.0", port=port)

@@ -37,3 +37,66 @@ pyodbc.OperationalError: Failed to connect after 3 attempts: ('08001', '[08001] 
 2025-08-10 19:22:28,973 INFO Transaction received from 192.168.0.13: {'id': 18863, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
 2025-08-10 19:22:34,438 INFO Transaction saved successfully.
 2025-08-10 19:22:34,441 INFO 192.168.0.13 - - [10/Aug/2025 19:22:34] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-10 19:57:42,917 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:15000
+ * Running on https://192.168.0.13:15000
+2025-08-10 19:57:42,918 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 19:59:34,940 INFO Transaction received from 192.168.0.13: {'id': 89063, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
+2025-08-10 19:59:34,941 ERROR Error saving transaction to DB
+Traceback (most recent call last):
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 215, in pesapal_callback
+    save_transaction_to_db(data)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 46, in save_transaction_to_db
+    conn = get_connection()
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 43, in get_connection
+    raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}")
+ValueError: Unsupported DB_TYPE: mssql
+2025-08-10 19:59:34,946 INFO 192.168.0.13 - - [10/Aug/2025 19:59:34] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
+2025-08-10 20:01:52,974 INFO Transaction received from 192.168.0.13: {'id': 89063, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
+2025-08-10 20:01:52,975 ERROR Error saving transaction to DB
+Traceback (most recent call last):
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 215, in pesapal_callback
+    save_transaction_to_db(data)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 46, in save_transaction_to_db
+    conn = get_connection()
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 43, in get_connection
+    raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}")
+ValueError: Unsupported DB_TYPE: mssql
+2025-08-10 20:01:52,978 INFO 192.168.0.13 - - [10/Aug/2025 20:01:52] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
+2025-08-10 20:02:24,339 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:15000
+ * Running on https://192.168.0.13:15000
+2025-08-10 20:02:24,339 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 20:02:44,574 INFO Transaction received from 192.168.0.13: {'id': 89063, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
+2025-08-10 20:02:49,921 INFO Transaction saved successfully.
+2025-08-10 20:02:49,922 INFO 192.168.0.13 - - [10/Aug/2025 20:02:49] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-10 20:07:24,626 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:15000
+ * Running on https://192.168.0.13:15000
+2025-08-10 20:07:24,627 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 20:07:51,758 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:15000
+ * Running on http://192.168.0.13:15000
+2025-08-10 20:07:51,758 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 20:11:39,977 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:12999
+ * Running on https://192.168.0.13:12999
+2025-08-10 20:11:39,977 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 20:12:32,727 INFO 192.168.0.13 - - [10/Aug/2025 20:12:32] "GET / HTTP/1.1" 200 -
+2025-08-10 20:12:33,123 INFO 192.168.0.13 - - [10/Aug/2025 20:12:33] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2025-08-10 20:32:28,503 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:12999
+ * Running on https://192.168.0.13:12999
+2025-08-10 20:32:28,506 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 20:51:36,294 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:12999
+ * Running on https://192.168.0.13:12999
