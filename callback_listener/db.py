@@ -28,7 +28,7 @@ POSTGRES_CONFIG = {
     "dbname": os.getenv("POSTGRES_NAME"),
     "user": os.getenv("POSTGRES_USER"),
     "password": os.getenv("POSTGRES_PASSWORD"),
-    "port": os.getenv("POSTGRES_PORT", "5432"),
+    "port": int(os.getenv("POSTGRES_PORT", "5432")),
 }
 
 def get_connection():
