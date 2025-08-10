@@ -1,5 +1,4 @@
 import os
-import pyodbc
 import psycopg2
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
@@ -34,6 +33,7 @@ POSTGRES_CONFIG = {
 def get_connection():
     """Return a database connection based on DB_TYPE."""
     if DB_TYPE == "sqlserver":
+        import pyodbc
         return pyodbc.connect(
             f"DRIVER={{{SQLSERVER_CONFIG['driver']}}};"
             f"SERVER={SQLSERVER_CONFIG['server']};"
@@ -42,6 +42,7 @@ def get_connection():
             f"PWD={SQLSERVER_CONFIG['password']}"
         )
     elif DB_TYPE == "postgres":
+        
         return psycopg2.connect(**POSTGRES_CONFIG)
     else:
         raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}")
