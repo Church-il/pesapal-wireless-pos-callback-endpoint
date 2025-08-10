@@ -5,7 +5,7 @@ FROM python:3.11-slim
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Set a working directory inside the container
-WORKDIR /app
+WORKDIR /callback_listener/app
 
 # Copy requirements first for efficient caching
 COPY requirements.txt .
