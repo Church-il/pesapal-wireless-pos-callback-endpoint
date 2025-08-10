@@ -61,11 +61,18 @@ REQUIRED_FIELDS = [
 # ===============================
 # Root Health Check Endpoint
 # ===============================
-@app.route('/')
-# Replace your current home route with this:
-import datetime
-from flask import jsonify, request
+@app.route('/health')
+def health():
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "service": "pesapal-callback-endpoint"
+    }), 200
 
+
+# ===============================
+# App Root Endpoint
+# ===============================
 @app.route('/')
 def home():
     # Check if request wants JSON
@@ -169,15 +176,6 @@ def home():
     </body>
     </html>
     """
-
-# Health check endpoint
-@app.route('/health')
-def health():
-    return jsonify({
-        "status": "healthy",
-        "timestamp": datetime.datetime.now().isoformat(),
-        "service": "pesapal-callback-endpoint"
-    }), 200
 
 # Favicon route to prevent 404 errors
 @app.route('/favicon.ico')
