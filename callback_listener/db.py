@@ -13,6 +13,8 @@ EAT = timezone(timedelta(hours=3))
 DB_TYPE = os.getenv("DB_TYPE", "postgres").lower()
 
 print(f"DB_TYPE is: {DB_TYPE}")
+print(f"DB_TYPE on startup: {os.getenv('DB_TYPE')}")
+
 
 
 # SQL Server config (local)
