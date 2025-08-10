@@ -62,11 +62,127 @@ REQUIRED_FIELDS = [
 # Root Health Check Endpoint
 # ===============================
 @app.route('/')
+# Replace your current home route with this:
+import datetime
+from flask import jsonify, request
+
+@app.route('/')
 def home():
-    return render_template('index.html', 
-                         service_name="Pesapal Wireless POS Callback Endpoint", 
-                         status="Active",
-                         timestamp=datetime.datetime.now().isoformat())
+    # Check if request wants JSON
+    if request.headers.get('Accept', '').startswith('application/json'):
+        return jsonify({
+            "service": "Pesapal Wireless POS Callback Endpoint",
+            "status": "running",
+            "timestamp": datetime.datetime.now().isoformat(),
+            "version": "1.0.0"
+        })
+    
+    # Return simple HTML
+    return """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Pesapal Wireless POS - Callback Service</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                background: #0f172a;
+                color: #e2e8f0;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .card {
+                background: linear-gradient(145deg, #1e293b, #334155);
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
+            }
+            .logo {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                color: #f1f5f9;
+            }
+            .subtitle {
+                color: #94a3b8;
+                margin-bottom: 2rem;
+            }
+            .status-indicator {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: #10b981;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 50px;
+                font-weight: 600;
+                animation: glow 2s ease-in-out infinite alternate;
+            }
+            @keyframes glow {
+                from { box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+                to { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+            }
+            .dot {
+                width: 8px;
+                height: 8px;
+                background: white;
+                border-radius: 50%;
+                animation: pulse 1s ease-in-out infinite;
+            }
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+            .info {
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid #334155;
+                font-size: 0.9rem;
+                color: #64748b;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="logo">🏪</div>
+            <h1>Pesapal Wireless POS</h1>
+            <p class="subtitle">Callback Endpoint Service</p>
+            <div class="status-indicator">
+                <div class="dot"></div>
+                Service Running
+            </div>
+            <div class="info">
+                Ready to receive payment callbacks
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+
+# Health check endpoint
+@app.route('/health')
+def health():
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "service": "pesapal-callback-endpoint"
+    }), 200
+
+# Favicon route to prevent 404 errors
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # No Content status code
 
 # ===============================
 # Callback Endpoint
