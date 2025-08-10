@@ -14,7 +14,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the contents of the local 'app' directory into the container's working directory
-COPY ./callback_listener .
+COPY ./callback_listener ./callback_listener
+
 
 # Default environment variables for Flask
 ENV FLASK_APP=app.py
