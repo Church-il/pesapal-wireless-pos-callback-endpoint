@@ -2,8 +2,9 @@ import os
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 
-# Load environment variables from .env locally (ignored in production)
-load_dotenv()
+if os.getenv("RENDER") is None:
+    # Only load local .env when not running on Render
+    load_dotenv()
 
 # East Africa Timezone (UTC+3)
 EAT = timezone(timedelta(hours=3))

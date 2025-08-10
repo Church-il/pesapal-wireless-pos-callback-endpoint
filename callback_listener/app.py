@@ -6,7 +6,10 @@ import sys
 from db import save_transaction_to_db
 from dotenv import load_dotenv
 
-load_dotenv()
+
+if os.getenv("RENDER") is None:
+    # Only load local .env when not running on Render
+    load_dotenv()
 
 EAT = timezone(timedelta(hours=3))
 
@@ -235,3 +238,5 @@ if __name__ == "__main__":
     else:
         print(f"⚠️ Running without SSL on port {port}")
         app.run(host="0.0.0.0", port=port)
+        
+print(f"DB_TYPE on startup: {os.getenv('DB_TYPE')}")
