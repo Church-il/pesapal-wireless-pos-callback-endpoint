@@ -1,39 +1,28 @@
 # Use a lightweight Python 3.11 base image to keep the container small
 FROM python:3.11-slim
 
-# Prevent interactive prompts during package installation (like tzdata asking for input)
+# Prevent interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install system dependencies needed by pyodbc (including unixODBC libraries)
-RUN apt-get update && apt-get install -y \
-    unixodbc \
-    unixodbc-dev \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set the working directory inside the container
-# All subsequent commands will be executed relative to this directory
 WORKDIR /callback_listener
 
-# Copy the requirements.txt file from your local machine into the container's working directory
+# Copy the requirements.txt file into the container
 COPY requirements.txt .
 
-# Install the Python dependencies listed in requirements.txt
-# --no-cache-dir avoids caching wheels to keep the image size smaller
+# Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all contents of your local 'callback_listener' folder directly into the working directory inside the container
-# This ensures app.py and all modules are placed in /callback_listener inside the container
+# Copy the app source code into the container
 COPY ./callback_listener .
 
-# Set environment variables for Flask to configure the app
+# Set Flask environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
-ENV FLASK_RUN_HOST=0.0.0.0      
+ENV FLASK_RUN_HOST=0.0.0.0
 
-# Expose port 5000, which Flask uses by default
-# This lets Docker and hosting services know which port your app listens on
+# Expose port 5000 for Flask
 EXPOSE 5000
 
-# Run the Flask app when the container starts
-# 'python app.py' starts your Flask application
+# Run the Flask app
 CMD ["python", "app.py"]
