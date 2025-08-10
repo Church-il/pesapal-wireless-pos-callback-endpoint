@@ -1,12 +1,14 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import logging
-import datetime
+from datetime import datetime, timedelta, timezone
 import os
 import sys
 from callback_listener.db import save_transaction_to_db
-
 from dotenv import load_dotenv
+
 load_dotenv()
+
+EAT = timezone(timedelta(hours=3))
 
 app = Flask(__name__)
 
@@ -65,7 +67,7 @@ REQUIRED_FIELDS = [
 def health():
     return jsonify({
         "status": "healthy",
-        "timestamp": datetime.datetime.now().isoformat(),
+        "timestamp": datetime.now(EAT).isoformat(),
         "service": "pesapal-callback-endpoint"
     }), 200
 
@@ -164,13 +166,13 @@ def home():
         <div class="card">
             <div class="logo">🏪</div>
             <h1>Pesapal Wireless POS</h1>
-            <p class="subtitle">Callback Endpoint Service</p>
+            <p class="subtitle">Callback Endpoint Application</p>
             <div class="status-indicator">
                 <div class="dot"></div>
                 Service Running
             </div>
             <div class="info">
-                Ready to receive payment callbacks
+                <p>Version: 1.0.0</p>
             </div>
         </div>
     </body>
