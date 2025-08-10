@@ -6,12 +6,11 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: DB_SERVER
-        value: 7.tcp.eu.ngrok.io,10067
+        value: 5.tcp.eu.ngrok.io,10457
       - key: DB_NAME
         value: PesapalDB
       - key: DB_USERNAME
         value: sa
       - key: DB_PASSWORD
         value: michaelakoko2025
-      - key: PORT
-        value: ${PORT}
+

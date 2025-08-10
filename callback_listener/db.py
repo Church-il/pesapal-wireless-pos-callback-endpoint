@@ -1,9 +1,11 @@
 import os
 import pyodbc
-from datetime import datetime
-
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
+
 load_dotenv()
+
+EAT = timezone(timedelta(hours=3))
 
 # Database Creds
 DB_CONFIG = {
@@ -21,8 +23,6 @@ def get_connection():
         f"DATABASE={DB_CONFIG['database']};"
         f"UID={DB_CONFIG['username']};"
         f"PWD={DB_CONFIG['password']}"
-        "Encrypt=no;"
-        "TrustServerCertificate=yes;"
     )
 
 def save_transaction_to_db(data):
@@ -60,7 +60,7 @@ def save_transaction_to_db(data):
         data['currency'],
         data['merchant_reference'],
         data['confirmation_code'],
-        datetime.utcnow()
+        datetime.now(EAT)
     ))
 
     cursor.execute('''
@@ -81,7 +81,7 @@ def save_transaction_to_db(data):
         data['currency'],
         data['merchant_reference'],
         data['confirmation_code'],
-        datetime.utcnow()
+        datetime.now(EAT)
     ))
 
     conn.commit()

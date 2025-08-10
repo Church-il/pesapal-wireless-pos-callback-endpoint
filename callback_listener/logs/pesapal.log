@@ -1,117 +1,42 @@
-2025-08-06 14:36:41,397 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://10.30.84.126:443
-2025-08-06 14:36:41,397 INFO [33mPress CTRL+C to quit[0m
-2025-08-06 14:36:53,697 INFO Transaction received from 127.0.0.1: {'id': 10463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
-2025-08-06 14:36:53,770 INFO Transaction saved successfully.
-2025-08-06 14:36:53,770 INFO 127.0.0.1 - - [06/Aug/2025 14:36:53] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-06 15:23:18,426 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:10000
- * Running on http://10.30.84.126:10000
-2025-08-06 15:23:18,428 INFO [33mPress CTRL+C to quit[0m
-2025-08-06 15:32:29,032 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:10000
- * Running on http://10.30.84.126:10000
-2025-08-06 15:32:29,032 INFO [33mPress CTRL+C to quit[0m
-2025-08-06 15:34:18,673 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://10.30.84.126:443
-2025-08-06 15:34:18,673 INFO [33mPress CTRL+C to quit[0m
-2025-08-06 15:34:27,694 INFO Transaction received from 127.0.0.1: {'id': 10463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
-2025-08-06 15:34:27,865 ERROR Error saving transaction to DB
+2025-08-10 15:05:09,532 INFO Transaction received from 192.168.0.13: {'id': 301118, 'first_name': 'Florence', 'last_name': 'Sadu', 'phone': '+87612885678', 'amount': 110.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ibif', 'confirmation_code': 'ibucbQO2'}
+2025-08-10 15:05:11,270 ERROR Error saving transaction to DB
 Traceback (most recent call last):
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 40, in pesapal_callback
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 79, in pesapal_callback
     save_transaction_to_db(data)
     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 60, in save_transaction_to_db
-    cursor.execute('''
-    ~~~~~~~~~~~~~~^^^^
-        INSERT INTO pesapal_transactions (
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<16 lines>...
-        datetime.utcnow()
-        ^^^^^^^^^^^^^^^^^
-    ))
-    ^^
-pyodbc.IntegrityError: ('23000', "[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__pesapal___3213E83F251F085A'. Cannot insert duplicate key in object 'dbo.pesapal_transactions'. The duplicate key value is (10463). (2627) (SQLExecDirectW); [23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated. (3621)")
-2025-08-06 15:34:27,868 INFO 127.0.0.1 - - [06/Aug/2025 15:34:27] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
-2025-08-06 15:37:54,648 INFO Transaction received from 127.0.0.1: {'id': 19463, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'test10'}
-2025-08-06 15:37:54,737 INFO Transaction saved successfully.
-2025-08-06 15:37:54,738 INFO 127.0.0.1 - - [06/Aug/2025 15:37:54] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-06 16:47:05,513 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 29, in save_transaction_to_db
+    conn = get_connection()
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 18, in get_connection
+    return pyodbc.connect(
+           ~~~~~~~~~~~~~~^
+        f"DRIVER={{{DB_CONFIG['driver']}}};"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        "TrustServerCertificate=yes;"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+pyodbc.InterfaceError: ('28000', "[28000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Login failed for user 'sa'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Login failed for user 'sa'. (18456)")
+2025-08-10 15:05:11,272 INFO 192.168.0.13 - - [10/Aug/2025 15:05:11] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
+2025-08-10 15:07:53,533 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://10.30.84.126:443
-2025-08-06 16:47:05,514 INFO [33mPress CTRL+C to quit[0m
-2025-08-08 11:19:13,074 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on https://127.0.0.1:15000
+ * Running on https://192.168.0.13:15000
+2025-08-10 15:07:53,533 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 15:08:06,306 INFO Transaction received from 192.168.0.13: {'id': 301118, 'first_name': 'Florence', 'last_name': 'Sadu', 'phone': '+87612885678', 'amount': 110.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ibif', 'confirmation_code': 'ibucbQO2'}
+2025-08-10 15:08:10,926 INFO Transaction saved successfully.
+2025-08-10 15:08:10,927 INFO 192.168.0.13 - - [10/Aug/2025 15:08:10] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-10 15:42:11,755 INFO Transaction received from 192.168.0.13: {'id': 998618, 'first_name': 'Angela', 'last_name': 'Winfrey', 'phone': '+87687685678', 'amount': 1000.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'sxg6ty', 'confirmation_code': 'JHIF9R8JD'}
+2025-08-10 15:42:14,786 INFO Transaction saved successfully.
+2025-08-10 15:42:14,786 INFO 192.168.0.13 - - [10/Aug/2025 15:42:14] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-10 15:46:28,806 INFO Transaction received from 192.168.0.13: {'id': 668618, 'first_name': 'Christine', 'last_name': 'Emilly', 'phone': '+87687685678', 'amount': 1000.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'sxg6ty', 'confirmation_code': 'JHIF9R8JD'}
+2025-08-10 15:46:32,033 INFO Transaction saved successfully.
+2025-08-10 15:46:32,034 INFO 192.168.0.13 - - [10/Aug/2025 15:46:32] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-10 15:51:40,726 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://10.30.85.6:443
-2025-08-08 11:19:13,075 INFO [33mPress CTRL+C to quit[0m
-2025-08-08 11:25:04,198 INFO 127.0.0.1 - - [08/Aug/2025 11:25:04] "[33mPOST / HTTP/1.1[0m" 404 -
-2025-08-08 11:25:33,356 INFO Transaction received from 127.0.0.1: {'id': 98746, 'first_name': 'Michael', 'last_name': 'Akoko', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'WTX7D69UW9'}
-2025-08-08 11:25:33,530 INFO Transaction saved successfully.
-2025-08-08 11:25:33,531 INFO 127.0.0.1 - - [08/Aug/2025 11:25:33] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-08 11:35:53,033 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://10.30.85.6:443
-2025-08-08 11:35:53,034 INFO [33mPress CTRL+C to quit[0m
-2025-08-08 11:46:49,375 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://10.30.85.6:443
-2025-08-08 11:46:49,375 INFO [33mPress CTRL+C to quit[0m
-2025-08-08 11:59:52,885 INFO Transaction received from 127.0.0.1: {'id': 98746, 'first_name': 'Michael', 'last_name': 'Akoko', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'WTX7D69UW9'}
-2025-08-08 11:59:53,021 ERROR Error saving transaction to DB
-Traceback (most recent call last):
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 40, in pesapal_callback
-    if missing_fields:
-        ^^^^^^^^^^^^^^
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 60, in save_transaction_to_db
-    cursor.execute('''
-    ~~~~~~~~~~~~~~^^^^
-        INSERT INTO pesapal_transactions (
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<16 lines>...
-        datetime.utcnow()
-        ^^^^^^^^^^^^^^^^^
-    ))
-    ^^
-pyodbc.IntegrityError: ('23000', "[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Violation of PRIMARY KEY constraint 'PK__pesapal___3213E83F251F085A'. Cannot insert duplicate key in object 'dbo.pesapal_transactions'. The duplicate key value is (98746). (2627) (SQLExecDirectW); [23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated. (3621)")
-2025-08-08 11:59:53,026 INFO 127.0.0.1 - - [08/Aug/2025 11:59:53] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
-2025-08-08 12:00:00,501 INFO Transaction received from 127.0.0.1: {'id': 94746, 'first_name': 'Michael', 'last_name': 'Akoko', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'TEST', 'confirmation_code': 'WTX7D69UW9'}
-2025-08-08 12:00:00,507 INFO Transaction saved successfully.
-2025-08-08 12:00:00,508 INFO 127.0.0.1 - - [08/Aug/2025 12:00:00] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-08 13:36:48,436 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:10000
- * Running on http://10.30.85.6:10000
-2025-08-08 13:36:48,437 INFO [33mPress CTRL+C to quit[0m
-2025-08-08 13:40:49,971 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:10000
- * Running on http://10.30.85.6:10000
-2025-08-08 13:40:49,971 INFO [33mPress CTRL+C to quit[0m
-2025-08-08 14:59:25,358 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:10000
- * Running on http://10.30.85.6:10000
-2025-08-08 14:59:25,359 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 10:34:54,898 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:10000
- * Running on http://192.168.0.13:10000
-2025-08-10 10:34:54,899 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 10:41:18,203 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:443
- * Running on https://192.168.0.13:443
-2025-08-10 10:41:18,205 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 10:42:13,873 INFO Transaction received from 192.168.0.13: {'id': 30008, 'first_name': 'Michaela', 'last_name': 'Peterson', 'phone': '+254712885678', 'amount': 100.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ZZrRT', 'confirmation_code': 'BRe5e9UW9'}
-2025-08-10 10:42:22,689 INFO Transaction saved successfully.
-2025-08-10 10:42:22,691 INFO 192.168.0.13 - - [10/Aug/2025 10:42:22] "POST /pesapal-callback HTTP/1.1" 200 -
+ * Running on https://127.0.0.1:15000
+ * Running on https://192.168.0.13:15000
+2025-08-10 15:51:40,727 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 15:52:27,062 INFO Transaction received from 192.168.0.13: {'id': 660618, 'first_name': 'Jeremiah', 'last_name': 'Jack', 'phone': '+87680085678', 'amount': 1200.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ijnidu4', 'confirmation_code': '9U9RJRIE'}
+2025-08-10 15:52:31,718 INFO Transaction saved successfully.
+2025-08-10 15:52:31,718 INFO 192.168.0.13 - - [10/Aug/2025 15:52:31] "POST /pesapal-callback HTTP/1.1" 200 -
