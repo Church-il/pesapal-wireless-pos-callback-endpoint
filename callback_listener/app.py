@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 import os
 import sys
-from callback_listener.db import save_transaction_to_db
+from db import save_transaction_to_db
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -225,8 +225,8 @@ def pesapal_callback():
 # ===============================
 if __name__ == '__main__':
     # For local HTTPS testing with certs
-    #ssl_context = ('certs/fullchain.pem', 'certs/privkey.pem')
-    #app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)), ssl_context=ssl_context)
+    ssl_context = ('certs/fullchain.pem', 'certs/privkey.pem')
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)), ssl_context=ssl_context)
 
     # Enable debug mode for local testing
     #app.debug = True  
@@ -234,4 +234,4 @@ if __name__ == '__main__':
     
     # For HTTP testing or cloud deployment (e.g. Render)
     # Use PORT environment variable for flexibility
-    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    #app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
