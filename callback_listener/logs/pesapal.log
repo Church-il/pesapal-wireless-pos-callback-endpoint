@@ -102,3 +102,16 @@ pyodbc.IntegrityError: ('23000', "[23000] [Microsoft][ODBC Driver 17 for SQL Ser
  * Running on http://127.0.0.1:10000
  * Running on http://10.30.85.6:10000
 2025-08-08 14:59:25,359 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 10:34:54,898 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.0.13:10000
+2025-08-10 10:34:54,899 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 10:41:18,203 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:443
+ * Running on https://192.168.0.13:443
+2025-08-10 10:41:18,205 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 10:42:13,873 INFO Transaction received from 192.168.0.13: {'id': 30008, 'first_name': 'Michaela', 'last_name': 'Peterson', 'phone': '+254712885678', 'amount': 100.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ZZrRT', 'confirmation_code': 'BRe5e9UW9'}
+2025-08-10 10:42:22,689 INFO Transaction saved successfully.
+2025-08-10 10:42:22,691 INFO 192.168.0.13 - - [10/Aug/2025 10:42:22] "POST /pesapal-callback HTTP/1.1" 200 -

@@ -21,6 +21,8 @@ def get_connection():
         f"DATABASE={DB_CONFIG['database']};"
         f"UID={DB_CONFIG['username']};"
         f"PWD={DB_CONFIG['password']}"
+        "Encrypt=no;"
+        "TrustServerCertificate=yes;"
     )
 
 def save_transaction_to_db(data):

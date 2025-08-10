@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import logging
 import os
 import sys
-from callback_listener.db import save_transaction_to_db
+from db import save_transaction_to_db
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -89,8 +89,8 @@ def pesapal_callback():
 # ===============================
 if __name__ == '__main__':
     # For local HTTPS testing with certs
-    # ssl_context = ('certs/fullchain.pem', 'certs/privkey.pem')
-    # app.run(host='0.0.0.0', port=443, ssl_context=ssl_context)
+    #ssl_context = ('certs/fullchain.pem', 'certs/privkey.pem')
+    #app.run(host='0.0.0.0', port=443, ssl_context=ssl_context)
 
     # For HTTP testing or cloud deployment (e.g. Render)
     app.run(host='0.0.0.0', port=10000)
