@@ -1,30 +1,33 @@
-# Use a lightweight Python base image
+# Use a lightweight Python 3.11 base image to keep the container small
 FROM python:3.11-slim
 
-# Prevent interactive prompts during package installs
+# Prevent interactive prompts during package installation (like tzdata asking for input)
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Set a working directory inside the container
+# Set the working directory inside the container
+# All subsequent commands will be executed relative to this directory
 WORKDIR /callback_listener
 
-# Copy requirements file from the host machine to the working directory in the container
+# Copy the requirements.txt file from your local machine into the container's working directory
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install the Python dependencies listed in requirements.txt
+# --no-cache-dir avoids caching wheels to keep the image size smaller
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the contents of the local 'app' directory into the container's working directory
-COPY ./callback_listener ./callback_listener
+# Copy all contents of your local 'callback_listener' folder directly into the working directory inside the container
+# This ensures app.py and all modules are placed in /callback_listener inside the container
+COPY ./callback_listener .
 
-
-# Default environment variables for Flask
+# Set environment variables for Flask to configure the app
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
-ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_HOST=0.0.0.0      
 
-# Expose the default port
-# (PORT is provided by Render at runtime; default to 5000 locally)
+# Expose port 5000, which Flask uses by default
+# This lets Docker and hosting services know which port your app listens on
 EXPOSE 5000
 
-# Start the Flask application
+# Run the Flask app when the container starts
+# 'python app.py' starts your Flask application
 CMD ["python", "app.py"]
