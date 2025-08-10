@@ -4,6 +4,12 @@ FROM python:3.11-slim
 # Prevent interactive prompts during package installation (like tzdata asking for input)
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install system dependencies needed by pyodbc (including unixODBC libraries)
+RUN apt-get update && apt-get install -y \
+    unixodbc \
+    unixodbc-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory inside the container
 # All subsequent commands will be executed relative to this directory
 WORKDIR /callback_listener
