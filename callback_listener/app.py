@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import logging
+import datetime
 import os
 import sys
 from callback_listener.db import save_transaction_to_db
@@ -62,7 +63,10 @@ REQUIRED_FIELDS = [
 # ===============================
 @app.route('/')
 def home():
-    return {"Status": "Active", "Message": "Pesapal Wireless POS Callback Endpoint is Running"}, 200
+    return render_template('index.html', 
+                         service_name="Pesapal Wireless POS Callback Endpoint", 
+                         status="Active",
+                         timestamp=datetime.datetime.now().isoformat())
 
 # ===============================
 # Callback Endpoint
