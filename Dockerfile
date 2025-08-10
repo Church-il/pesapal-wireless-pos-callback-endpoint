@@ -5,16 +5,16 @@ FROM python:3.11-slim
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Set a working directory inside the container
-WORKDIR /app
+WORKDIR /callback_listener/app
 
-# Copy requirements first for efficient caching
+# Copy requirements file from the host machine to the working directory in the container
 COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+# Copy the contents of the local 'app' directory into the container's working directory
+COPY ./app .
 
 # Default environment variables for Flask
 ENV FLASK_APP=app.py
