@@ -58,6 +58,13 @@ REQUIRED_FIELDS = [
 ]
 
 # ===============================
+# Root Health Check Endpoint
+# ===============================
+@app.route('/')
+def home():
+    return {"Status": "Active", "Message": "Pesapal Wireless POS Callback Endpoint is Running"}, 200
+
+# ===============================
 # Callback Endpoint
 # ===============================
 @app.route('/pesapal-callback', methods=['POST'])
