@@ -2,15 +2,15 @@ import os
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 
-if os.getenv("RENDER") is None:
-    # Only load local .env when not running on Render
-    load_dotenv()
+load_dotenv()
+
+print("DB_TYPE:", os.getenv("DB_TYPE"))
 
 # East Africa Timezone (UTC+3)
 EAT = timezone(timedelta(hours=3))
 
 # DB type: 'sqlserver' (local) or 'postgres' (Render)
-DB_TYPE = os.getenv("DB_TYPE", "postgres").lower()
+DB_TYPE = os.getenv("DB_TYPE", "sqlserver").lower()
 
 print(f"DB_TYPE is: {DB_TYPE}")
 print(f"DB_TYPE on startup: {os.getenv('DB_TYPE')}")

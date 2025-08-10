@@ -7,9 +7,9 @@ from db import save_transaction_to_db
 from dotenv import load_dotenv
 
 
-if os.getenv("RENDER") is None:
-    # Only load local .env when not running on Render
-    load_dotenv()
+load_dotenv()
+
+print("DB_TYPE:", os.getenv("DB_TYPE"))
 
 EAT = timezone(timedelta(hours=3))
 
