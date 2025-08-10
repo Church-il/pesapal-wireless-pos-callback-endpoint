@@ -114,8 +114,14 @@ def home():
                 width: 90%;
             }
             .logo {
-                font-size: 3rem;
                 margin-bottom: 1rem;
+            }
+            .logo img {
+                max-width: 200px;
+                max-height: 80px;
+                width: auto;
+                height: auto;
+                filter: brightness(1.1);
             }
             h1 {
                 font-size: 1.8rem;
@@ -164,9 +170,11 @@ def home():
     </head>
     <body>
         <div class="card">
-            <div class="logo">🏪</div>
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzoCjQJNz7hYHw-9zYEgI-5Qx7QkpH63-aA&s" alt="Pesapal Logo" />
+            </div>
             <h1>Pesapal Wireless POS</h1>
-            <p class="subtitle">Callback Endpoint Application</p>
+            <p class="subtitle">Callback Endpoint Listener</p>
             <div class="status-indicator">
                 <div class="dot"></div>
                 Service Running
@@ -183,6 +191,7 @@ def home():
 @app.route('/favicon.ico')
 def favicon():
     return '', 204  # No Content status code
+
 
 # ===============================
 # Callback Endpoint
@@ -204,7 +213,7 @@ def pesapal_callback():
 
     try:
         save_transaction_to_db(data)
-    except Exception as e:
+    except Exception:
         logger.exception("Error saving transaction to DB")
         return jsonify(status="500", message="Internal server error"), 500
 
