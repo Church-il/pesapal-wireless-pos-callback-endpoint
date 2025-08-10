@@ -11,6 +11,9 @@ EAT = timezone(timedelta(hours=3))
 # DB type: 'sqlserver' (local) or 'postgres' (Render)
 DB_TYPE = os.getenv("DB_TYPE", "sqlserver").lower()
 
+print(f"DB_TYPE is: {DB_TYPE}")
+
+
 # SQL Server config (local)
 SQLSERVER_CONFIG = {
     "server": os.getenv("DB_SERVER"),
