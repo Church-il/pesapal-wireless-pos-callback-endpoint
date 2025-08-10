@@ -100,3 +100,4 @@ ValueError: Unsupported DB_TYPE: mssql
  * Running on all addresses (0.0.0.0)
  * Running on https://127.0.0.1:12999
  * Running on https://192.168.0.13:12999
+2025-08-10 20:51:36,299 INFO [33mPress CTRL+C to quit[0m

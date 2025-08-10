@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 import os
 import sys
-from db import save_transaction_to_db
+from callback_listener.db import save_transaction_to_db
 from dotenv import load_dotenv
 
 load_dotenv()
