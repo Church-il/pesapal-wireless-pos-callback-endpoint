@@ -40,3 +40,11 @@ pyodbc.InterfaceError: ('28000', "[28000] [Microsoft][ODBC Driver 17 for SQL Ser
 2025-08-10 15:52:27,062 INFO Transaction received from 192.168.0.13: {'id': 660618, 'first_name': 'Jeremiah', 'last_name': 'Jack', 'phone': '+87680085678', 'amount': 1200.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ijnidu4', 'confirmation_code': '9U9RJRIE'}
 2025-08-10 15:52:31,718 INFO Transaction saved successfully.
 2025-08-10 15:52:31,718 INFO 192.168.0.13 - - [10/Aug/2025 15:52:31] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-10 16:03:40,394 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:15000
+ * Running on https://192.168.0.13:15000
+2025-08-10 16:03:40,398 INFO [33mPress CTRL+C to quit[0m
+2025-08-10 16:04:30,769 INFO Transaction received from 192.168.0.13: {'id': 693618, 'first_name': 'Jeremiah', 'last_name': 'Johnson', 'phone': '+54637085678', 'amount': 1200.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'sax75r', 'confirmation_code': 'AS994JRYU'}
+2025-08-10 16:04:35,561 INFO Transaction saved successfully.
+2025-08-10 16:04:35,564 INFO 192.168.0.13 - - [10/Aug/2025 16:04:35] "POST /pesapal-callback HTTP/1.1" 200 -

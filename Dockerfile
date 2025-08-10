@@ -44,5 +44,7 @@ USER appuser
 EXPOSE ${PORT}
 
 # Use environment variables at runtime instead of embedding secrets
+
 # Start app with Gunicorn
-CMD ["gunicorn", "callback_listener.app:app", "--bind", "0.0.0.0:${PORT}", "--workers=2", "--threads=2", "--access-logfile=-", "--error-logfile=-"]
+CMD ["sh", "-c", "gunicorn callback_listener.app:app --bind 0.0.0.0:${PORT} --workers=2 --threads=2 --access-logfile=- --error-logfile=-"]
+
