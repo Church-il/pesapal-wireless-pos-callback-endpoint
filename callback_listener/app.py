@@ -6,7 +6,6 @@ import sys
 from db import save_transaction_to_db
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 print("DB_TYPE:", os.getenv("DB_TYPE"))

@@ -1,8 +1,7 @@
 import os
 from datetime import datetime, timedelta, timezone
-from dotenv import load_dotenv
 
-load_dotenv()
+
 
 print("DB_TYPE:", os.getenv("DB_TYPE"))
 
