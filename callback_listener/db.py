@@ -4,54 +4,58 @@ from datetime import datetime, timedelta, timezone
 # East Africa Timezone (UTC+3)
 EAT = timezone(timedelta(hours=3))
 
-# DB type: 'sqlserver' (local) or 'postgres' (Render)
-DB_TYPE = os.getenv("DB_TYPE", "sqlserver").lower()
-print(f"DB_TYPE in db.py: {DB_TYPE}")
+def get_db_type():
+    db_type = os.getenv("DB_TYPE", "sqlserver")
+    if db_type:
+        return db_type.lower()
+    return "sqlserver"
 
-# SQL Server config (local)
-SQLSERVER_CONFIG = {
-    "server": os.getenv("DB_SERVER"),
-    "database": os.getenv("DB_NAME"),
-    "username": os.getenv("DB_USERNAME"),
-    "password": os.getenv("DB_PASSWORD"),
-    "driver": "ODBC Driver 17 for SQL Server"
-}
+def get_sqlserver_config():
+    return {
+        "server": os.getenv("DB_SERVER"),
+        "database": os.getenv("DB_NAME"),
+        "username": os.getenv("DB_USERNAME"),
+        "password": os.getenv("DB_PASSWORD"),
+        "driver": "ODBC Driver 17 for SQL Server"
+    }
 
-# Postgres config (Render)
-POSTGRES_CONFIG = {
-    "host": os.getenv("POSTGRES_HOST"),
-    "dbname": os.getenv("POSTGRES_DB"),
-    "user": os.getenv("POSTGRES_USER"),
-    "password": os.getenv("POSTGRES_PASSWORD"),
-    "port": int(os.getenv("POSTGRES_PORT", "5432")),
-}
+def get_postgres_config():
+    return {
+        "host": os.getenv("POSTGRES_HOST"),
+        "dbname": os.getenv("POSTGRES_DB"),
+        "user": os.getenv("POSTGRES_USER"),
+        "password": os.getenv("POSTGRES_PASSWORD"),
+        "port": int(os.getenv("POSTGRES_PORT", "5432")),
+    }
 
 def get_connection():
-    """Return a DB connection based on DB_TYPE."""
-    if DB_TYPE == "sqlserver":
-        import pyodbc  # Import here to avoid errors if pyodbc isn't installed on Render
+    db_type = get_db_type()
+    print(f"DB_TYPE in get_connection(): {db_type}")
+
+    if db_type == "sqlserver":
+        import pyodbc
+        cfg = get_sqlserver_config()
         conn_str = (
-            f"DRIVER={{{SQLSERVER_CONFIG['driver']}}};"
-            f"SERVER={SQLSERVER_CONFIG['server']};"
-            f"DATABASE={SQLSERVER_CONFIG['database']};"
-            f"UID={SQLSERVER_CONFIG['username']};"
-            f"PWD={SQLSERVER_CONFIG['password']}"
+            f"DRIVER={{{cfg['driver']}}};"
+            f"SERVER={cfg['server']};"
+            f"DATABASE={cfg['database']};"
+            f"UID={cfg['username']};"
+            f"PWD={cfg['password']}"
         )
         return pyodbc.connect(conn_str)
-    
-    elif DB_TYPE == "postgres":
+
+    elif db_type == "postgres":
         import psycopg2
-        return psycopg2.connect(**POSTGRES_CONFIG)
-    
+        cfg = get_postgres_config()
+        return psycopg2.connect(**cfg)
+
     else:
-        raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}")
+        raise ValueError(f"Unsupported DB_TYPE: {db_type}")
 
 def save_transaction_to_db(data):
-    """Save transaction data to the configured database."""
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Parse transaction_date string safely
     raw_date = data.get('transaction_date')
     if not raw_date:
         raise ValueError("Missing transaction_date in data.")
@@ -69,9 +73,8 @@ def save_transaction_to_db(data):
     else:
         parsed_date = datetime.strptime(raw_date, "%Y-%m-%dT%H:%M:%S")
 
-    # Set placeholders depending on DB driver
     placeholders = (
-        "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" if DB_TYPE == "sqlserver" else
+        "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" if get_db_type() == "sqlserver" else
         "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s"
     )
 
