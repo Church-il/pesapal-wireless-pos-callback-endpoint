@@ -18,4 +18,4 @@ services:
       - key: POSTGRES_PORT
         value: "5432"
       - key: PORT
-        value: "15000"
+        value: "10000"
