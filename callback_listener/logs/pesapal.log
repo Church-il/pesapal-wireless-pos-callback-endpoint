@@ -124,3 +124,8 @@ ValueError: Unsupported DB_TYPE: mssql
 2025-08-11 00:41:30,184 INFO Transaction received from 192.168.0.13: {'id': 867863, 'first_name': 'jonathan', 'last_name': 'noel', 'phone': '+223562345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'uhei2e', 'confirmation_code': 'AS090RUR'}
 2025-08-11 00:41:34,934 INFO Transaction saved successfully.
 2025-08-11 00:41:34,936 INFO 192.168.0.13 - - [11/Aug/2025 00:41:34] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-11 09:59:09,321 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:12999
+ * Running on https://192.168.138.2:12999
+2025-08-11 09:59:09,322 INFO [33mPress CTRL+C to quit[0m
