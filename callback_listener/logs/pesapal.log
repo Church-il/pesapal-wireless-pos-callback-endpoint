@@ -129,3 +129,14 @@ ValueError: Unsupported DB_TYPE: mssql
  * Running on https://127.0.0.1:12999
  * Running on https://192.168.138.2:12999
 2025-08-11 09:59:09,322 INFO [33mPress CTRL+C to quit[0m
+2025-08-11 12:27:33,306 INFO Transaction received from 192.168.138.2: {'id': 821063, 'first_name': 'pesapal', 'last_name': 'merchant', 'phone': '+2367845678', 'amount': 12.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'xcvtyr', 'confirmation_code': 'AZXS0IRE3'}
+2025-08-11 12:27:38,622 INFO Transaction saved successfully.
+2025-08-11 12:27:38,631 INFO 192.168.138.2 - - [11/Aug/2025 12:27:38] "POST /pesapal-callback HTTP/1.1" 200 -
+2025-08-11 12:36:07,681 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:12999
+ * Running on https://192.168.138.2:12999
+2025-08-11 12:36:07,682 INFO [33mPress CTRL+C to quit[0m
+2025-08-11 12:36:54,004 INFO Transaction received from 192.168.138.2: {'id': 823363, 'first_name': 'pesapal', 'last_name': 'merchant', 'phone': '+2367845678', 'amount': 112.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': '3ujee', 'confirmation_code': 'PKDPX9DNM'}
+2025-08-11 12:37:00,066 INFO Transaction saved successfully.
+2025-08-11 12:37:00,069 INFO 192.168.138.2 - - [11/Aug/2025 12:37:00] "POST /pesapal-callback HTTP/1.1" 200 -

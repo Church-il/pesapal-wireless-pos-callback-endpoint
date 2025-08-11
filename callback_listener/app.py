@@ -13,7 +13,7 @@ DB_TYPE = os.getenv("DB_TYPE")
 if not DB_TYPE:
     DB_TYPE = os.environ.get("DB_TYPE")  # fallback to env var set by Render or Docker
 
-print("DB_TYPE:", DB_TYPE)
+#print("DB_TYPE:", DB_TYPE)
 
 EAT = timezone(timedelta(hours=3))
 
