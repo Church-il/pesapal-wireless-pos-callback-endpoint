@@ -1,145 +1,26 @@
-2025-08-10 19:12:33,813 INFO Transaction received from 192.168.0.13: {'id': 622118, 'first_name': 'Annette', 'last_name': 'Mayane', 'phone': '+54632019678', 'amount': 30.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'ptoit8', 'confirmation_code': 'QPWO094JR'}
-2025-08-10 19:12:33,813 INFO Attempting database connection (attempt 1/3)
-2025-08-10 19:12:35,382 ERROR Database connection attempt 1 failed: ('08001', '[08001] [Microsoft][ODBC Driver 17 for SQL Server]SSL Provider: The certificate chain was issued by an authority that is not trusted.\r\n (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection (-2146893019); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Invalid connection string attribute (0)')
-2025-08-10 19:12:35,382 INFO Retrying in 2 seconds...
-2025-08-10 19:12:37,383 INFO Attempting database connection (attempt 2/3)
-2025-08-10 19:12:38,386 ERROR Database connection attempt 2 failed: ('08001', '[08001] [Microsoft][ODBC Driver 17 for SQL Server]SSL Provider: The certificate chain was issued by an authority that is not trusted.\r\n (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection (-2146893019); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Invalid connection string attribute (0)')
-2025-08-10 19:12:38,387 INFO Retrying in 4 seconds...
-2025-08-10 19:12:42,387 INFO Attempting database connection (attempt 3/3)
-2025-08-10 19:12:43,678 ERROR Database connection attempt 3 failed: ('08001', '[08001] [Microsoft][ODBC Driver 17 for SQL Server]SSL Provider: The certificate chain was issued by an authority that is not trusted.\r\n (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection (-2146893019); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Invalid connection string attribute (0)')
-2025-08-10 19:12:43,679 ERROR All connection attempts failed
-2025-08-10 19:12:43,679 ERROR Database operational error: Failed to connect after 3 attempts: ('08001', '[08001] [Microsoft][ODBC Driver 17 for SQL Server]SSL Provider: The certificate chain was issued by an authority that is not trusted.\r\n (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection (-2146893019); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Invalid connection string attribute (0)')
-2025-08-10 19:12:43,680 ERROR Error saving transaction to DB
+2025-08-13 13:59:53,302 INFO Transaction received from 192.168.138.166: {'id': 93932, 'first_name': 'James', 'last_name': 'Johnson', 'phone': '+254657445678', 'amount': 4.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'kxcs8e', 'confirmation_code': 'X0ISJS00WS'}
+2025-08-13 13:59:54,052 ERROR Error saving transaction to DB
 Traceback (most recent call last):
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 55, in get_connection
-    conn = pyodbc.connect(connection_string)
-pyodbc.OperationalError: ('08001', '[08001] [Microsoft][ODBC Driver 17 for SQL Server]SSL Provider: The certificate chain was issued by an authority that is not trusted.\r\n (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection (-2146893019); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Invalid connection string attribute (0)')
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 215, in pesapal_callback
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 222, in pesapal_callback
     save_transaction_to_db(data)
     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 158, in save_transaction_to_db
-    raise e
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 88, in save_transaction_to_db
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 111, in save_transaction_to_db
     conn = get_connection()
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 70, in get_connection
-    raise pyodbc.OperationalError(f"Failed to connect after {retry_count} attempts: {error_msg}")
-pyodbc.OperationalError: Failed to connect after 3 attempts: ('08001', '[08001] [Microsoft][ODBC Driver 17 for SQL Server]SSL Provider: The certificate chain was issued by an authority that is not trusted.\r\n (-2146893019) (SQLDriverConnect); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection (-2146893019); [08001] [Microsoft][ODBC Driver 17 for SQL Server]Invalid connection string attribute (0)')
-2025-08-10 19:12:43,685 INFO 192.168.0.13 - - [10/Aug/2025 19:12:43] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
-2025-08-10 19:14:58,576 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:15000
- * Running on https://192.168.0.13:15000
-2025-08-10 19:14:58,577 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 19:22:28,973 INFO Transaction received from 192.168.0.13: {'id': 18863, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
-2025-08-10 19:22:34,438 INFO Transaction saved successfully.
-2025-08-10 19:22:34,441 INFO 192.168.0.13 - - [10/Aug/2025 19:22:34] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-10 19:57:42,917 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:15000
- * Running on https://192.168.0.13:15000
-2025-08-10 19:57:42,918 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 19:59:34,940 INFO Transaction received from 192.168.0.13: {'id': 89063, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
-2025-08-10 19:59:34,941 ERROR Error saving transaction to DB
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 45, in get_connection
+    return pyodbc.connect(conn_str)
+           ~~~~~~~~~~~~~~^^^^^^^^^^
+pyodbc.Error: ('HY000', '[HY000] [Microsoft][ODBC Driver 17 for SQL Server]Protocol error in TDS stream (0) (SQLDriverConnect); [HY000] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection due to prelogin failure (0)')
+2025-08-13 13:59:54,058 INFO 192.168.138.166 - - [13/Aug/2025 13:59:54] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
+2025-08-13 14:03:03,841 INFO Transaction received from 192.168.138.166: {'id': 97532, 'first_name': 'James', 'last_name': 'Johnson', 'phone': '+254657445678', 'amount': 4.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'kxcs8e', 'confirmation_code': 'X0ISJS00WS'}
+2025-08-13 14:03:04,457 ERROR Error saving transaction to DB
 Traceback (most recent call last):
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 215, in pesapal_callback
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 222, in pesapal_callback
     save_transaction_to_db(data)
     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 46, in save_transaction_to_db
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 111, in save_transaction_to_db
     conn = get_connection()
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 43, in get_connection
-    raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}")
-ValueError: Unsupported DB_TYPE: mssql
-2025-08-10 19:59:34,946 INFO 192.168.0.13 - - [10/Aug/2025 19:59:34] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
-2025-08-10 20:01:52,974 INFO Transaction received from 192.168.0.13: {'id': 89063, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
-2025-08-10 20:01:52,975 ERROR Error saving transaction to DB
-Traceback (most recent call last):
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\app.py", line 215, in pesapal_callback
-    save_transaction_to_db(data)
-    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 46, in save_transaction_to_db
-    conn = get_connection()
-  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 43, in get_connection
-    raise ValueError(f"Unsupported DB_TYPE: {DB_TYPE}")
-ValueError: Unsupported DB_TYPE: mssql
-2025-08-10 20:01:52,978 INFO 192.168.0.13 - - [10/Aug/2025 20:01:52] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
-2025-08-10 20:02:24,339 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:15000
- * Running on https://192.168.0.13:15000
-2025-08-10 20:02:24,339 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 20:02:44,574 INFO Transaction received from 192.168.0.13: {'id': 89063, 'first_name': 'joe', 'last_name': 'doe', 'phone': '+254712345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'imnfi', 'confirmation_code': '0ikgjgo'}
-2025-08-10 20:02:49,921 INFO Transaction saved successfully.
-2025-08-10 20:02:49,922 INFO 192.168.0.13 - - [10/Aug/2025 20:02:49] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-10 20:07:24,626 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:15000
- * Running on https://192.168.0.13:15000
-2025-08-10 20:07:24,627 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 20:07:51,758 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:15000
- * Running on http://192.168.0.13:15000
-2025-08-10 20:07:51,758 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 20:11:39,977 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.0.13:12999
-2025-08-10 20:11:39,977 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 20:12:32,727 INFO 192.168.0.13 - - [10/Aug/2025 20:12:32] "GET / HTTP/1.1" 200 -
-2025-08-10 20:12:33,123 INFO 192.168.0.13 - - [10/Aug/2025 20:12:33] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
-2025-08-10 20:32:28,503 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.0.13:12999
-2025-08-10 20:32:28,506 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 20:51:36,294 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.0.13:12999
-2025-08-10 20:51:36,299 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 22:51:10,589 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.0.13:12999
-2025-08-10 22:51:10,590 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 22:51:31,171 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on http://127.0.0.1:12999
- * Running on http://192.168.0.13:12999
-2025-08-10 22:51:31,172 INFO [33mPress CTRL+C to quit[0m
-2025-08-10 22:54:49,800 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.0.13:12999
-2025-08-10 22:54:49,802 INFO [33mPress CTRL+C to quit[0m
-2025-08-11 00:41:07,255 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.0.13:12999
-2025-08-11 00:41:07,258 INFO [33mPress CTRL+C to quit[0m
-2025-08-11 00:41:30,184 INFO Transaction received from 192.168.0.13: {'id': 867863, 'first_name': 'jonathan', 'last_name': 'noel', 'phone': '+223562345678', 'amount': 1.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'uhei2e', 'confirmation_code': 'AS090RUR'}
-2025-08-11 00:41:34,934 INFO Transaction saved successfully.
-2025-08-11 00:41:34,936 INFO 192.168.0.13 - - [11/Aug/2025 00:41:34] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-11 09:59:09,321 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.138.2:12999
-2025-08-11 09:59:09,322 INFO [33mPress CTRL+C to quit[0m
-2025-08-11 12:27:33,306 INFO Transaction received from 192.168.138.2: {'id': 821063, 'first_name': 'pesapal', 'last_name': 'merchant', 'phone': '+2367845678', 'amount': 12.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'xcvtyr', 'confirmation_code': 'AZXS0IRE3'}
-2025-08-11 12:27:38,622 INFO Transaction saved successfully.
-2025-08-11 12:27:38,631 INFO 192.168.138.2 - - [11/Aug/2025 12:27:38] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-11 12:36:07,681 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on all addresses (0.0.0.0)
- * Running on https://127.0.0.1:12999
- * Running on https://192.168.138.2:12999
-2025-08-11 12:36:07,682 INFO [33mPress CTRL+C to quit[0m
-2025-08-11 12:36:54,004 INFO Transaction received from 192.168.138.2: {'id': 823363, 'first_name': 'pesapal', 'last_name': 'merchant', 'phone': '+2367845678', 'amount': 112.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': '3ujee', 'confirmation_code': 'PKDPX9DNM'}
-2025-08-11 12:37:00,066 INFO Transaction saved successfully.
-2025-08-11 12:37:00,069 INFO 192.168.138.2 - - [11/Aug/2025 12:37:00] "POST /pesapal-callback HTTP/1.1" 200 -
-2025-08-11 15:22:23,050 INFO Transaction received from 192.168.138.2: {'id': 12499, 'first_name': 'sandra', 'last_name': 'james', 'phone': '+254721345678', 'amount': 18.0, 'payment_option': 'Visa', 'transaction_date': '2022-02-04T14:19:05.0210431Z', 'currency': 'KES', 'merchant_reference': 'sx9u4hir', 'confirmation_code': 'A09UIX9JZIJS9'}
-2025-08-11 15:22:27,329 INFO Transaction saved successfully.
-2025-08-11 15:22:27,336 INFO 192.168.138.2 - - [11/Aug/2025 15:22:27] "POST /pesapal-callback HTTP/1.1" 200 -
+  File "C:\Users\MichaelAkoko\OneDrive - pesapal.com\Documents\Michael-Akoko-Projects\pesapal-wireless-pos-callback-endpoint\callback_listener\db.py", line 45, in get_connection
+    return pyodbc.connect(conn_str)
+           ~~~~~~~~~~~~~~^^^^^^^^^^
+pyodbc.Error: ('HY000', '[HY000] [Microsoft][ODBC Driver 17 for SQL Server]Protocol error in TDS stream (0) (SQLDriverConnect); [HY000] [Microsoft][ODBC Driver 17 for SQL Server]Client unable to establish connection due to prelogin failure (0)')
+2025-08-13 14:03:04,458 INFO 192.168.138.166 - - [13/Aug/2025 14:03:04] "[35m[1mPOST /pesapal-callback HTTP/1.1[0m" 500 -
